@@ -9,6 +9,10 @@ body {
   color: whitesmoke;
 }
 
+button {
+  width: fit-content;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
