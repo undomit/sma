@@ -1,0 +1,28 @@
+{
+  "name": "sma",
+  "version": "1.0.0",
+  "description": "Demo project - Integrating with SMA devices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undomit/sma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/undomit/sma/issues"
+  },
+  "homepage": "https://github.com/undomit/sma#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
