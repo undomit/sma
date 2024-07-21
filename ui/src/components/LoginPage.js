@@ -1,5 +1,5 @@
 import React, {useRef, useContext, useEffect} from "react";
-import { Button} from "@mui/material";
+import { Button, Card, CardContent, CardActions, Typography, CircularProgress} from "@mui/material";
 import { useWriter } from "../hooks/useWriter";
 import { useReader } from "../hooks/useReader";
 import { SmaContextElement } from "./SmaContext";
@@ -10,7 +10,7 @@ export const LoginPage = () => {
     const usernameRef = useRef();
     const passwordRef = useRef();
     const {isPending, mutate} = useWriter('http://localhost:3000/login');
-    const {data} = useReader('http://localhost:3000/status');
+    const {data} = useReader('http://localhost:3000/status', {refetchOnMount: 'always'});
     const {setError} = useContext(SmaContextElement);
     const navigate = useNavigate();
 
@@ -23,31 +23,35 @@ export const LoginPage = () => {
 
         mutate(data, {
             onError: (error) => setError(error?.error?.error_description ?? 'Unexpected error'),
-            onSuccess: (data) => {console.log(data); navigate('/dashboard')},
+            onSuccess: (data) => navigate('/dashboard'),
         });
     }
     
     useEffect(() => {
-        console.log(data);
-        if (data?.state === "Accepted")  {
+        if (data?.data?.state === "Accepted")  {
             navigate('/dashboard');
         }
-    }, [data]);
+    }, [data, navigate]);
 
     return (
-        <div className={css`width: 300px;`}>
-            <p>Enter your SMA credentials</p>
-            <form>
-                <div style={{display: 'grid', gap: '8px'}}>
-                    <label>Username</label>
-                    <input ref={usernameRef} name="username" />
-                    <label>Password</label>
-                    <input ref={passwordRef} name="password" />
-                </div>
-            </form>
-            {isPending && <p>Loading...</p>}
-
-            <Button variant="primary" onClick={handleSubmit}>Submit</Button>
+        <div className={css`display: flex; align-items: center; justify-content: center; height: 100vh`}>
+            <Card>
+                <CardContent>
+                    <Typography variant="h5" sx={{marginBottom: '16px'}}>Enter your SMA credentials</Typography>
+                    <form>
+                        <div style={{display: 'grid', gap: '8px'}}>
+                            <Typography>Username</Typography>
+                            <input ref={usernameRef} name="username" />
+                            <Typography>Password</Typography>
+                            <input ref={passwordRef} name="password" />
+                        </div>
+                    </form>
+                </CardContent>
+                <CardActions sx={{padding: '16px', justifyContent: 'space-between'}}>
+                    <Button variant="outlined" color="primary" onClick={handleSubmit}>Submit</Button>
+                    {isPending && <CircularProgress />}
+                </CardActions>
+            </Card>
         </div>
     )
 }

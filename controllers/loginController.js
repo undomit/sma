@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {tokenRequestUrl, authorizeUrl, consentUrl} from '../endpoints.js';
 
-let SMA_TOKEN;
+export let SMA_TOKEN;
 export let clientId;
 export let clientSecret;
 export let refreshToken;
@@ -13,7 +13,6 @@ export const loginController = async (req, res) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
-        console.log(tokenResponse);
 
         const accessToken = tokenResponse.data.access_token;
 
@@ -31,19 +30,8 @@ export const loginController = async (req, res) => {
 
         res.json(authResponse.data);
     } catch (error) {
-        console.log(error);
         const {status, data} = error?.response ?? {};
 
         res.status(status || 500).send({error: data ?? 'Internal server error'});
     }
-}
-
-export const addAuthToken = (req, res, next) => {
-    console.log(SMA_TOKEN);
-
-    if (SMA_TOKEN) {
-        req.headers['Authorization'] = `Bearer ${SMA_TOKEN}`;
-    }
-
-    next();
 }

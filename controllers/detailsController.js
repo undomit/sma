@@ -1,10 +1,11 @@
 import axios from 'axios';
-import {consentStatusUrl} from '../endpoints.js';
-import { SMA_TOKEN } from './loginController.js';
+import {SMA_TOKEN} from './loginController.js';
 
-export const getStatusController = async (req, res) => {
+export const getDetailsController = async (req, res) => {
+    const deviceId = req.params.deviceId;
+
     try {
-        const response = await axios.get(consentStatusUrl, {
+        const response = await axios.get(`https://sandbox.smaapis.de/monitoring/v1/devices/${deviceId}`, {
             headers: {
                 'Authorization': req.headers['Authorization'],
             }

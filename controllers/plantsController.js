@@ -1,10 +1,9 @@
 import axios from 'axios';
-import {consentStatusUrl} from '../endpoints.js';
-import { SMA_TOKEN } from './loginController.js';
+import {plantsUrl} from '../endpoints.js';
 
-export const getStatusController = async (req, res) => {
+export const getPlantsController = async (req, res) => {
     try {
-        const response = await axios.get(consentStatusUrl, {
+        const response = await axios.get(plantsUrl, {
             headers: {
                 'Authorization': req.headers['Authorization'],
             }

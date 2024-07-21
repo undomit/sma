@@ -7,7 +7,6 @@ import {LoginPage} from './components/LoginPage';
 import {GlobalError} from './components/GlobalError';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
-import { css } from '@emotion/css';
 
 const queryClient = new QueryClient();
 
@@ -16,10 +15,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <SmaContext>
-          <div className={css`display: flex; align-items: center; justify-content: center; height: 100vh`}>
+          <div>
             <Router>
               <Routes>
-                  <Route path='/' element={<LoginPage />} />
+                  <Route exact path='/' element={<LoginPage />} />
                   <Route path='/dashboard' element={<Dashboard />} />
               </Routes>
             </Router>
