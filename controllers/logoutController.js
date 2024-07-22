@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {logoutUrl} from '../endpoints.js';
 import { clientId, clientSecret, refreshToken } from './loginController.js';
-import { SMA_TOKEN } from './loginController.js';
 
 export const logoutController = async (req, res) => {
     try {

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {consentStatusUrl} from '../endpoints.js';
-import { SMA_TOKEN } from './loginController.js';
 
 export const getStatusController = async (req, res) => {
     try {

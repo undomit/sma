@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {SMA_TOKEN} from './loginController.js';
 
 export const getDevicesController = async (req, res) => {
     const plantId = req.params.plantId;

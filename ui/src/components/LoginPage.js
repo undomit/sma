@@ -23,7 +23,7 @@ export const LoginPage = () => {
 
         mutate(data, {
             onError: (error) => setError(error?.error?.error_description ?? 'Unexpected error'),
-            onSuccess: (data) => navigate('/dashboard'),
+            onSuccess: () => navigate('/dashboard'),
         });
     }
     

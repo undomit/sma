@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {SMA_TOKEN} from './loginController.js';
 
 export const getDetailsController = async (req, res) => {
     const deviceId = req.params.deviceId;
